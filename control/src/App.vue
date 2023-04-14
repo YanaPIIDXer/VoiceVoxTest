@@ -2,8 +2,6 @@
 import PrimeButton from "primevue/button";
 import { FetchAudio } from "./classes/FetchAudio";
 import { speakers } from "./constants/settings/Speaker";
-
-// 仮
 import { ref } from "vue";
 
 const soundRef = ref("");
