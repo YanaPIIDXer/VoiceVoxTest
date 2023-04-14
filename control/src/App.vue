@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import PrimeButton from "primevue/button";
+import { FetchAudio } from "./classes/FetchAudio";
+import { speakers } from "./constants/settings/Speaker";
 
 /**
  * とりあえず実行
  */
 const onExecForNow = async () => {
-  alert("とりあえず実行");
+  const fetchAudio = new FetchAudio(speakers[0], "はろーわーるど");
+  try {
+    const result = await fetchAudio.fetch();
+    console.log(result);
+  } catch (error) {
+    alert("Error");
+    console.error(error);
+  }
 }
 </script>
 

@@ -1,13 +1,9 @@
 const host = "http://localhost:8081";
 
-interface IApi {
-  [type: string]: string;
-}
-
 /**
  * APIのエンドポイント群
  */
-export const apiEndpoints: IApi = {
+export const apiEndpoints = {
   audioQuery: host + "/audio_query",
   synthesis: host + "/synthesis",
 };
