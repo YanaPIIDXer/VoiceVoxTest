@@ -1,0 +1,6 @@
+version: "3.0"
+services:
+  voicevox:
+    image: voicevox/voicevox_engine:cpu-ubuntu20.04-latest
+    ports:
+      - 8081:50021
