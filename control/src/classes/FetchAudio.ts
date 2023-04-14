@@ -1,5 +1,5 @@
 import type { Speaker } from "@/interfaces/settings/Speaker";
-import { callAudioQueryRequest } from "@/api/query";
+import { callAudioQueryRequest, callSynthesis } from "@/api/query";
 
 /**
  * 音声をフェッチするクラス
@@ -30,7 +30,17 @@ export class FetchAudio {
     });
     console.log(query.data);
 
-    // TODO: 音声合成の実装
-    return "OK";
+    const response = await callSynthesis({
+      speaker: this.speaker,
+      query: query.data
+    });
+    
+    return await new Promise<string>(resolve => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result as string);
+      }
+      reader.readAsDataURL(new Blob([response.data], { type: "audio/wav" }));
+    });
   }
 }
