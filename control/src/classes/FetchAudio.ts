@@ -28,19 +28,14 @@ export class FetchAudio {
       speaker: this.speaker,
       text: this.text,
     });
-    console.log(query.data);
 
+    // 音声合成
     const response = await callSynthesis({
       speaker: this.speaker,
       query: query.data
     });
     
-    return await new Promise<string>(resolve => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result as string);
-      }
-      reader.readAsDataURL(new Blob([response.data], { type: "audio/wav" }));
-    });
+    const bytes = new Uint8Array(response.data);
+    return "data:audio/wav;base64," + btoa(String.fromCharCode(...bytes));
   }
 }

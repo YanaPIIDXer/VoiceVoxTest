@@ -20,5 +20,7 @@ export const callAudioQueryRequest = async (request: AudioQueryRequest): Promise
  * synthesis
  */
 export const callSynthesis = async (request: SynthesisRequest): Promise<AxiosResponse<any, any>> => {
-  return await axios.post(apiEndpoints.synthesis + "?speaker=" + request.speaker.id, request.query);
+  return await axios.post(apiEndpoints.synthesis + "?speaker=" + request.speaker.id, request.query, {
+    responseType: "arraybuffer",
+  });
 }
