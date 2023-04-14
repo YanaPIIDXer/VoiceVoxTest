@@ -9,10 +9,12 @@ import { ref } from "vue";
 const soundRef = ref("");
 
 /**
- * とりあえず実行
+ * テキスト再生
+ * @param text 再生するテキスト
  */
-const onExecForNow = async () => {
-  const fetchAudio = new FetchAudio(speakers[0], "はろーわーるど");
+const playSound = async (text: string): Promise<void> => {
+  soundRef.value = "";
+  const fetchAudio = new FetchAudio(speakers[0], text);
   try {
     const result = await fetchAudio.fetch();
     soundRef.value = result;
@@ -20,6 +22,13 @@ const onExecForNow = async () => {
     alert("Error");
     console.error(error);
   }
+}
+
+/**
+ * とりあえず実行
+ */
+const onExecForNow = (): void => {
+  playSound("はろーわーるど")
 }
 </script>
 
